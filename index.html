@@ -6,6 +6,7 @@
     </head>
 
     <body>
+        <button id="clear">New Grid</button>
         <div id="container">
 
         </div>
@@ -13,13 +14,22 @@
 
     <script>
 
+        const myButton = document.querySelector('#clear');
+
+        myButton.addEventListener("click", newGrid);
+
+        let divCount = 16;
+
         const container = document.querySelector('#container');
         container.style.display = 'grid';
-        container.style.gridTemplateColumns = 'auto auto auto auto';
-        container.style.gridGap = '0px 0px';
-        container.style.width = '40px';
+        container.style.gridTemplateColumns = 'repeat(' + Math.sqrt(divCount) + ', auto)';
+        // container.style.gridGap = '0px 0px';
+        container.style.width = '500px';
+        container.style.height = '500px';
+        container.style.margin = '0 auto';
+        container.style.border = "1px solid black";
 
-        makeDivs(64);
+        makeDivs(divCount);
 
         const divs = document.querySelectorAll('div');
 
@@ -28,10 +38,30 @@
 
             } else {
                 div.addEventListener("mouseover", blackBackGround);
-                // div.addEventListener("mouseout", whiteBackGround);
             }
 
         });
+
+        function newGrid() {
+            let divCount = prompt("Enter number of rows (2-100)");
+            divCount = divCount * divCount;
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            makeDivs(divCount);
+            container.style.gridTemplateColumns = 'repeat(' + Math.sqrt(divCount) + ', auto)';
+
+            const divs = document.querySelectorAll('div');
+
+            divs.forEach((div) => {
+                if(div.id == "container") {
+
+                } else {
+                    div.addEventListener("mouseover", blackBackGround);
+                }
+
+            });
+        }
 
         function blackBackGround() {
             this.style.backgroundColor = "black";
@@ -45,11 +75,10 @@
             for (let i = 0; i < numberOfDivs; i++) {
                 const square = document.createElement('div');
                 container.appendChild(square);
-                square.style.margin = '1px';
+                let fraction = (1 / numberOfDivs) * 100;
                 square.style.border = '1px solid black';
-                square.style.height = '10px';
-                square.style.width = '10px';
-                // square.style.display = 'inline-grid';
+                square.style.height = "100%";
+                square.style.width = "100%";
             }
         }
 
