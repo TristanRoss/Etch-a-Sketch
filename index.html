@@ -21,6 +21,26 @@
 
         makeDivs(64);
 
+        const divs = document.querySelectorAll('div');
+
+        divs.forEach((div) => {
+            if(div.id == "container") {
+
+            } else {
+                div.addEventListener("mouseover", blackBackGround);
+                // div.addEventListener("mouseout", whiteBackGround);
+            }
+
+        });
+
+        function blackBackGround() {
+            this.style.backgroundColor = "black";
+        }
+
+        function whiteBackGround() {
+            this.style.backgroundColor = "white";
+        }
+
         function makeDivs(numberOfDivs) {
             for (let i = 0; i < numberOfDivs; i++) {
                 const square = document.createElement('div');
@@ -32,6 +52,10 @@
                 // square.style.display = 'inline-grid';
             }
         }
+
+
+
+
 
     </script>
 
