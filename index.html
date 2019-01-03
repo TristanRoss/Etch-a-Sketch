@@ -15,42 +15,26 @@
     <script>
 
         const myButton = document.querySelector('#clear');
-
+        myButton.style.marginLeft = "40%";
+        myButton.style.width = "20%";
+        myButton.style.marginRight = "40%";
+        myButton.style.marginBottom = "10px";
         myButton.addEventListener("click", newGrid);
 
-        let divCount = 16;
+        let divCount = 256;
 
         const container = document.querySelector('#container');
         container.style.display = 'grid';
         container.style.gridTemplateColumns = 'repeat(' + Math.sqrt(divCount) + ', auto)';
-        // container.style.gridGap = '0px 0px';
         container.style.width = '500px';
         container.style.height = '500px';
         container.style.margin = '0 auto';
         container.style.border = "1px solid black";
 
         makeDivs(divCount);
+        hover();
 
-        const divs = document.querySelectorAll('div');
-
-        divs.forEach((div) => {
-            if(div.id == "container") {
-
-            } else {
-                div.addEventListener("mouseover", blackBackGround);
-            }
-
-        });
-
-        function newGrid() {
-            let divCount = prompt("Enter number of rows (2-100)");
-            divCount = divCount * divCount;
-            while (container.firstChild) {
-                container.removeChild(container.firstChild);
-            }
-            makeDivs(divCount);
-            container.style.gridTemplateColumns = 'repeat(' + Math.sqrt(divCount) + ', auto)';
-
+        function hover() {
             const divs = document.querySelectorAll('div');
 
             divs.forEach((div) => {
@@ -61,14 +45,23 @@
                 }
 
             });
+
+        }
+
+        function newGrid() {
+            let divCount = prompt("Enter number of rows (2-100)");
+            divCount = divCount * divCount;
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            makeDivs(divCount);
+            container.style.gridTemplateColumns = 'repeat(' + Math.sqrt(divCount) + ', auto)';
+            hover();
+
         }
 
         function blackBackGround() {
             this.style.backgroundColor = "black";
-        }
-
-        function whiteBackGround() {
-            this.style.backgroundColor = "white";
         }
 
         function makeDivs(numberOfDivs) {
@@ -81,10 +74,6 @@
                 square.style.width = "100%";
             }
         }
-
-
-
-
 
     </script>
 
