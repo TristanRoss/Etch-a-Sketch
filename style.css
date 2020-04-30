@@ -1,0 +1,19 @@
+html {
+    background-color: black;
+}
+
+#container {
+    width: 50%;
+    margin: auto;
+}
+
+#btnContainer {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+#newGrid {
+    width: 25%;
+    margin: 30px;
+}
